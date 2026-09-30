@@ -9,8 +9,8 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
@@ -20,7 +20,7 @@ jobs:
       - run: npm test
 
       # The retrieval eval downloads the ~34 MB embedding model once; cache it between runs.
-      - uses: actions/cache@v4
+      - uses: actions/cache@v6
         with:
           path: .data/models
           key: embeddings-bge-small-en-v1.5

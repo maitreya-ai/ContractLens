@@ -98,7 +98,9 @@ Two eval suites measure whether the chunk that answers each question is retrieve
 |---------|-------|-------|--------|
 | vector  |   70% |  100% |  0.833 |
 | keyword |   60% |  100% |  0.762 |
-| hybrid  |  100% |  100% |  1.000 |
+| hybrid  |   90% |  100% |  0.950 |
+
+These are the numbers from the Linux CI runner. On macOS (Apple silicon) hybrid scores 100% / 100% / 1.000. The local embedding model's floating-point results differ slightly by platform, which flips two close rankings: on Linux, the answers to "What is the maximum fee the owner can set?" and "What happens to unknown function calls?" rank second.
 
 **Real code: USDC on Ethereum** (`npm run eval:live`, fetched from Sourcify): proxy plus 23-file implementation, 190 chunks, 15 questions.
 
@@ -108,7 +110,7 @@ Two eval suites measure whether the chunk that answers each question is retrieve
 | keyword |   33% |  100% |  0.586 |
 | hybrid  |   80% |  100% |  0.900 |
 
-On the fixture, hybrid retrieval fixes every question where one retriever alone ranked the answer second or lower. On USDC it matches the stronger retriever at Hit@1; its misses rank the relevant contract's outline first, which is useful context but counts as a miss under the strict metric. In every mode the answering chunk is in the top 5, and chat sends the top 8. Both suites are small (35 questions in total): treat them as regression guards, not benchmarks. CI fails if hybrid Hit@5 on the fixture drops below 90%.
+On the fixture, hybrid retrieval ranks the answer first more often than either retriever alone. On USDC it matches the stronger retriever at Hit@1; its misses rank the relevant contract's outline first, which is useful context but counts as a miss under the strict metric. In every mode the answering chunk is in the top 5, and chat sends the top 8. Both suites are small (35 questions in total): treat them as regression guards, not benchmarks. CI fails if hybrid Hit@5 on the fixture drops below 90%.
 
 ## Quick start
 
