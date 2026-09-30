@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+
+      # The retrieval eval downloads the ~34 MB embedding model once; cache it between runs.
+      - uses: actions/cache@v4
+        with:
+          path: .data/models
+          key: embeddings-bge-small-en-v1.5
+      - name: Retrieval eval (fails if hybrid Hit@5 drops below 90%)
+        run: npm run eval
+        env:
+          EVAL_MIN_HIT5: "0.9"
+
+      - run: npm run build

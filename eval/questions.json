@@ -1,0 +1,22 @@
+[
+  { "q": "Can the owner mint new tokens?", "expect": ["VaultToken.mint", "VaultToken.addMinter"] },
+  { "q": "Who is allowed to create new supply?", "expect": ["VaultToken.mint", "VaultToken.addMinter", "VaultToken.onlyMinter"] },
+  { "q": "Can transfers be paused?", "expect": ["VaultToken.pause", "VaultToken.whenNotPaused", "VaultToken.transfer"] },
+  { "q": "Is there a blacklist that could freeze my wallet?", "expect": ["VaultToken.setBlacklist", "VaultToken._transfer"] },
+  { "q": "What is the maximum fee the owner can set?", "expect": ["VaultToken.setFees", "VaultToken declarations"] },
+  { "q": "Is this contract upgradeable?", "expect": ["VaultToken.upgradeTo", "VaultToken.fallback"] },
+  { "q": "Can the owner withdraw ETH or tokens held by the contract?", "expect": ["VaultToken.emergencyWithdraw"] },
+  { "q": "Is there a limit on how many tokens one wallet can hold?", "expect": ["VaultToken.setMaxWallet", "VaultToken._transfer", "Wallet limits"] },
+  { "q": "When can people start trading?", "expect": ["VaultToken.enableTrading", "VaultToken._transfer"] },
+  { "q": "How is ownership transferred?", "expect": ["VaultToken.transferOwnership"] },
+  { "q": "Can ownership be renounced?", "expect": ["VaultToken.renounceOwnership", "Ownership"] },
+  { "q": "How is the tax calculated when I sell?", "expect": ["VaultToken._transfer", "Transfer tax"] },
+  { "q": "Can I burn my own tokens?", "expect": ["VaultToken.burn"] },
+  { "q": "Where do the collected fees go?", "expect": ["VaultToken._transfer", "VaultToken.setFeeRecipient"] },
+  { "q": "How are allowances spent in transferFrom?", "expect": ["VaultToken.transferFrom"] },
+  { "q": "What does the whitepaper say about total supply?", "expect": ["Supply"] },
+  { "q": "Is liquidity locked?", "expect": ["Liquidity"] },
+  { "q": "Does the documentation claim the contract is immutable?", "expect": ["Immutability"] },
+  { "q": "What happens to unknown function calls?", "expect": ["VaultToken.fallback"] },
+  { "q": "Which accounts don't pay fees?", "expect": ["VaultToken._transfer", "VaultToken declarations", "VaultToken.constructor"] }
+]

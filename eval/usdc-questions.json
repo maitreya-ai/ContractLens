@@ -1,0 +1,22 @@
+{
+  "name": "USDC (Ethereum mainnet, live from Sourcify)",
+  "chainId": 1,
+  "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+  "questions": [
+    { "q": "Can Circle freeze or blacklist my USDC?", "expect": ["Blacklistable.blacklist", "Blacklistable.notBlacklisted", "FiatTokenV2_2._setBlacklistState", "FiatTokenV1._blacklist"] },
+    { "q": "Who can add or remove accounts from the blacklist?", "expect": ["Blacklistable.onlyBlacklister", "Blacklistable.blacklist", "Blacklistable.unBlacklist", "Blacklistable.updateBlacklister"] },
+    { "q": "Who can mint new USDC?", "expect": ["FiatTokenV1.mint", "FiatTokenV1.configureMinter", "FiatTokenV1.onlyMinters"] },
+    { "q": "How is a minter's allowance set?", "expect": ["FiatTokenV1.configureMinter", "FiatTokenV1.minterAllowance"] },
+    { "q": "Who controls the minters?", "expect": ["FiatTokenV1.onlyMasterMinter", "FiatTokenV1.updateMasterMinter", "FiatTokenV1.configureMinter", "FiatTokenV1.removeMinter"] },
+    { "q": "Can the contract be upgraded?", "expect": ["AdminUpgradeabilityProxy.upgradeTo", "AdminUpgradeabilityProxy.upgradeToAndCall", "UpgradeabilityProxy._upgradeTo"] },
+    { "q": "Who is the proxy admin and can it be changed?", "expect": ["AdminUpgradeabilityProxy.changeAdmin", "AdminUpgradeabilityProxy.admin", "AdminUpgradeabilityProxy.ifAdmin", "AdminUpgradeabilityProxy._setAdmin"] },
+    { "q": "Can transfers be paused?", "expect": ["Pausable.pause", "Pausable.whenNotPaused", "FiatTokenV1.transfer"] },
+    { "q": "Who is allowed to pause the contract?", "expect": ["Pausable.onlyPauser", "Pausable.pause", "Pausable.updatePauser"] },
+    { "q": "Can tokens sent to the contract by mistake be recovered?", "expect": ["Rescuable.rescueERC20"] },
+    { "q": "Who can burn USDC?", "expect": ["FiatTokenV1.burn"] },
+    { "q": "How is ownership of the token contract transferred?", "expect": ["Ownable.transferOwnership", "Ownable.setOwner"] },
+    { "q": "How do gasless transfers with a signed authorization work?", "expect": ["FiatTokenV2.transferWithAuthorization", "FiatTokenV2_2.transferWithAuthorization", "EIP3009._transferWithAuthorization"] },
+    { "q": "How does permit (EIP-2612) approval work?", "expect": ["FiatTokenV2.permit", "FiatTokenV2_2.permit", "EIP2612._permit"] },
+    { "q": "How are the blacklist flag and balance stored together?", "expect": ["FiatTokenV2_2._setBlacklistState", "FiatTokenV2_2._setBalance", "FiatTokenV2_2._isBlacklisted", "FiatTokenV2_2._balanceOf"] }
+  ]
+}

@@ -30,8 +30,12 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files (never commit keys; .env.example is the template)
 .env*
+!.env.example
+
+# local database + downloaded embedding model
+/.data/
 
 # vercel
 .vercel

@@ -1,0 +1,35 @@
+# ContractLens + Postgres 17 with pgvector.
+#   cp .env.example .env.local   # add ANTHROPIC_API_KEY
+#   docker compose up --build    # http://localhost:3000
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    environment:
+      POSTGRES_USER: contractlens
+      POSTGRES_PASSWORD: contractlens
+      POSTGRES_DB: contractlens
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U contractlens"]
+      interval: 5s
+      retries: 10
+
+  app:
+    build: .
+    env_file:
+      - path: .env.local
+        required: false
+    environment:
+      DATABASE_URL: postgres://contractlens:contractlens@db:5432/contractlens
+    ports:
+      - "3000:3000"
+    volumes:
+      - models:/app/.data/models
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  models:

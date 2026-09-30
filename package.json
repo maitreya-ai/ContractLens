@@ -2,25 +2,48 @@
   "name": "contractlens",
   "version": "0.1.0",
   "private": true,
+  "description": "RAG for smart contract due diligence: ask any verified contract questions and get answers cited to exact lines.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.9"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "eval": "tsx scripts/eval-retrieval.ts --verbose",
+    "eval:live": "tsx scripts/eval-retrieval.ts --live --verbose"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.129.0",
+    "@electric-sql/pglite": "^0.5.8",
+    "@electric-sql/pglite-pgvector": "^0.0.9",
+    "@huggingface/transformers": "^4.3.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.48.0",
     "next": "16.3.7",
+    "postgres": "^3.4.9",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "shiki": "^4.4.3",
+    "unpdf": "^1.8.1",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^24.19.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.7",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "tsx": "^4.23.15",
+    "typescript": "^5",
+    "vitest": "^5.0.2"
   }
 }
